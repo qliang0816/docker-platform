@@ -2,6 +2,20 @@ version: '3'
 
 services:
 
+### NODE Container #######################################
+
+node:
+    image: "node:9"
+    user: "node"
+    working_dir: /var/www
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - ./:/var/www
+    expose:
+      - "8081"
+    command: "npm start"
+
 ### PHP-FPM Container #######################################
 
     php-fpm:
