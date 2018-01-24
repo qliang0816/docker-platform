@@ -5,13 +5,13 @@ services:
 ### NODE Container #######################################
 
   node:
-    image: "node:8"
+    image: "node:latest"
     user: "node"
-    working_dir: /home/ql/Documents/node
+    working_dir: /var/www/node
     environment:
       - NODE_ENV=${NODE_ENV}
     volumes:
-      - ./:/home/ql/Documents/node
+      - ${NODE_VOLUMN}:/var/www/node
     expose:
-      - "8081"
+      - "8011"
     command: "npm start"
