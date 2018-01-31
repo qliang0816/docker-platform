@@ -2,39 +2,25 @@ version: '3'
 
 services:
 
-### Applications Code Container #############################
-
-  applications:
-    image: tianon/true
-    volumes:
-      - ${APPLICATION}:/var/www
-
-### NODE Container #######################################
-
-  node:
-    image: "node:latest"
-    user: "node"
-    working_dir: /var/www/node
-    environment:
-      - NODE_ENV=${NODE_ENV}
-    volumes:
-      - ${NODE_VOLUMN}:/var/www/node
-    expose:
-      - "8011"
-    command: "npm start"
-
 ### PHP-FPM Container #######################################
 
   php-fpm:
     build:
       context: ./php-fpm
-      dockerfile: "Dockerfile-${PHP_VERSION}"
     volumes:
-      - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
+      - ${APPLICATION}:/var/www
+      - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
     expose:
       - "9000"
-    volumes_from:
-      - applications
+    container_name: 'php-fpm'
     networks:
+      - frontend
       - backend
 
+### Networks Setup ############################################
+
+networks:
+  frontend:
+    driver: "bridge"
+  backend:
+    driver: "bridge"
