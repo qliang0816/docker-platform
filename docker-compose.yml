@@ -12,7 +12,6 @@ services:
       - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
     expose:
       - "9000"
-    container_name: 'php-fpm'
     networks:
       - frontend
       - backend
