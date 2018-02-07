@@ -2,6 +2,8 @@ FROM nginx:alpine
 
 MAINTAINER Leo Qin
 
+ADD nginx.conf /etc/nginx/
+
 RUN apk update \
     && apk upgrade \
     && apk add --no-cache bash \
