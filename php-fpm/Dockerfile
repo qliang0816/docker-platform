@@ -41,6 +41,10 @@ RUN docker-php-ext-install pdo_mysql \
 	--with-jpeg-dir=/usr/lib \
 	--with-freetype-dir=/usr/include/freetype2 && \
 	docker-php-ext-install gd
+
+# update timezone
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+	&& echo "Asia/shanghai" > /etc/timezone;
 	
 WORKDIR /var/www
 
