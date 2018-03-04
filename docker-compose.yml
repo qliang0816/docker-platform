@@ -35,6 +35,26 @@ services:
       - frontend
       - backend
 
+### couchdb Container #######################################
+    couchdb:
+      build:
+        context: ./couchdb
+      environment:
+        - COUCHDB_USER=admin
+        - COUCHDB_PASSWORD=admin
+      volumes:
+        - ${DATA_SAVE_PATH}/couchdb/:/opt/couchdb/data
+        - ./couchdb/:/usr/local/etc/couchdb/
+        - ./logs/couchdb/:/usr/local/var/log/couchdb/
+      depends_on:
+        - php-fpm
+      ports:
+        - "5984:5984"
+        - "4369:4369"
+        - "9100:9100"
+      networks:
+        - backend
+
 ### Networks Setup ########################################
 
 networks:
