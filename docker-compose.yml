@@ -9,13 +9,13 @@ services:
       context: ./node
       environment:
         - NODE_ENV=${NODE_ENVIRONMENT}
-      volumes:
-        - ${APPLICATION}${node}:/var/www
-      ports:
-        - "${NODE_PORT}:8888"
-      command: "${NODE_COMMAND}"
-      networks: 
-        - frontend
+    volumes:
+      - ${APPLICATION}${node}:/var/www
+    ports:
+      - "${NODE_PORT}:8888"
+    command: "${NODE_COMMAND}"
+    networks: 
+      - frontend
 
 
 ### PHP-FPM Container #####################################
