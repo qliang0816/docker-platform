@@ -7,8 +7,8 @@ services:
   node:
     build:
       context: ./node
-      environment:
-        - NODE_ENV=${NODE_ENVIRONMENT}
+    environment:
+      - NODE_ENV=${NODE_ENVIRONMENT}
     volumes:
       - ${APPLICATION}${node}:/var/www
     ports:
