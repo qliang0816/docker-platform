@@ -57,15 +57,12 @@ services:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
     volumes:
-      - ${DATA_SAVE_PATH}/couchdb/:/opt/couchdb/data
-      - ./couchdb/:/usr/local/etc/couchdb/
-      - ./logs/couchdb/:/usr/local/var/log/couchdb/
+      - ${DATA_SAVE_PATH}/couchdb:/opt/couchdb/data
+      - ./logs/couchdb:/usr/local/var/log/couchdb
     depends_on:
       - php-fpm
     ports:
-      - "5984:5984"
-      - "4369:4369"
-      - "9100:9100"
+      - "${COUCHDB_PORT}:5984"
     networks:
       - frontend
 
