@@ -5,5 +5,4 @@ FROM node:alpine
 WORKDIR /var/www
 
 # replace this with your application's default port
-ARG NODE_EXPOSE=8888
-EXPOSE ${NODE_EXPOSE}
+EXPOSE 8888

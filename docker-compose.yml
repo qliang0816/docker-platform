@@ -17,7 +17,6 @@ services:
     networks: 
       - frontend
 
-
 ### PHP-FPM Container #####################################
 
   php-fpm:
@@ -63,6 +62,23 @@ services:
       - php-fpm
     ports:
       - "${COUCHDB_PORT}:5984"
+    networks:
+      - frontend
+
+### MySQL Container #########################################
+
+  mysql:
+    build:
+      context: ./mysql
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ${DATA_SAVE_PATH}/mysql:/var/lib/mysql
+    ports:
+      - "${MYSQL_PORT}:3306"
     networks:
       - frontend
 
