@@ -1,6 +1,6 @@
 FROM memcached:latest
 
-MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
+MAINTAINER Leo Qin
 
 CMD ["memcached"]
 
