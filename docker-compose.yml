@@ -156,3 +156,21 @@ services:
 networks:
   frontend:
     driver: "bridge"
+
+### Volumes Setup  ########################################
+
+volumes:
+  mysql:
+    driver: "local"
+  postgres:
+    driver: "local"
+  memcached:
+    driver: "local"
+  redis:
+    driver: "local"
+  mariadb:
+    driver: "local"
+  mongo:
+    driver: "local"
+  # elasticsearch:
+    # driver: "local"
