@@ -99,7 +99,7 @@ services:
     ports:
       - "${MARIADB_PORT}:3306"
     networks:
-      - backend
+      - frontend
 
 ### PostgreSQL Container ####################################
 
@@ -114,7 +114,42 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
     networks:
-      - backend
+      - frontend
+
+### MongoDB Container #######################################
+
+  mongo:
+    build: ./mongo
+    ports:
+      - "${MONGODB_PORT}:27017"
+    volumes:
+      - ${DATA_SAVE_PATH}/mongo:/data/db
+    networks:
+      - frontend
+
+### Redis Container #########################################
+
+  redis:
+    build: ./redis
+    volumes:
+      - ${DATA_SAVE_PATH}/redis:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      - frontend
+
+### Memcached Container #####################################
+
+  memcached:
+    build: ./memcached
+    volumes:
+      - ${DATA_SAVE_PATH}/memcached:/var/lib/memcached
+    ports:
+      - "${MEMCACHED_HOST_PORT}:11211"
+    depends_on:
+      - php-fpm
+    networks:
+      - frontend
 
 ### Networks Setup ########################################
 
