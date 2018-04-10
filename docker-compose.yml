@@ -1,5 +1,27 @@
 version: '3'
 
+networks:
+  frontend:
+    driver: "bridge"
+
+volumes:
+  mysql:
+    driver: "local"
+  mariadb:
+    driver: "local"
+  postgres:
+    driver: "local"
+  memcached:
+    driver: "local"
+  redis:
+    driver: "local"
+  mongodb:
+    driver: "local"
+  couchdb:
+    driver: "local"
+  elasticsearch:
+    driver: "local"
+
 services:
 
 ### NODE Container ########################################
@@ -79,6 +101,7 @@ services:
       context: ./mysql
       args:
           - MYSQL_VERSION=${MYSQL_VERSION}
+          - TIMEZONE=${TIMEZONE}
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
@@ -95,7 +118,11 @@ services:
 ### MariaDB Container #######################################
 
   mariadb:
-    build: ./mariadb
+    build: 
+      context: ./mariadb
+      args:
+        - MARIADB_VERSION=${MARIADB_VERSION}
+        - TIMEZONE=${TIMEZONE}
     environment:
       - MYSQL_DATABASE=${MARIADB_DATABASE}
       - MYSQL_USER=${MARIADB_USER}
@@ -127,7 +154,7 @@ services:
 ### MongoDB Container #######################################
 
   mongodb:
-    build: ./mongo
+    build: ./mongodb
     ports:
       - "${MONGODB_PORT}:27017"
     volumes:
@@ -188,22 +215,22 @@ services:
     networks:
       - frontend
 
-networks:
-  frontend:
-    driver: "bridge"
+### ElasticSearch ########################################
 
-volumes:
-  mysql:
-    driver: "local"
-  postgres:
-    driver: "local"
-  memcached:
-    driver: "local"
-  redis:
-    driver: "local"
-  mariadb:
-    driver: "local"
-  mongo:
-    driver: "local"
-  # elasticsearch:
-    # driver: "local"
+    elasticsearch:
+      build: ./elasticsearch
+      volumes:
+        - elasticsearch:/usr/share/elasticsearch/data
+      environment:
+        - cluster.name=cluster
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+      ports:
+        - "${ELASTICSEARCH_HOST_HTTP_PORT}:9200"
+        - "${ELASTICSEARCH_HOST_TRANSPORT_PORT}:9300"
+      networks:
+        - frontend
