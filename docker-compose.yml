@@ -36,6 +36,9 @@ services:
   nginx:
     build:
       context: ./nginx
+      args:
+          - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
+          - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
     volumes:
       - ${APPLICATION}:/var/www
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
@@ -48,21 +51,24 @@ services:
     networks:
       - frontend
 
-### couchdb Container #######################################
+### Apache Server ########################################
 
-  couchdb:
+  apache2:
     build:
-      context: ./couchdb
-    environment:
-      - COUCHDB_USER=admin
-      - COUCHDB_PASSWORD=admin
+      context: ./apache2
+      args:
+        - PHP_UPSTREAM_CONTAINER=${APACHE_PHP_UPSTREAM_CONTAINER}
+        - PHP_UPSTREAM_PORT=${APACHE_PHP_UPSTREAM_PORT}
+        - PHP_UPSTREAM_TIMEOUT=${APACHE_PHP_UPSTREAM_TIMEOUT}
     volumes:
-      - ${DATA_SAVE_PATH}/couchdb:/opt/couchdb/data
-      - ./logs/couchdb:/usr/local/var/log/couchdb
+      - ${APPLICATION}:/var/www
+      - ${APACHE_HOST_LOG_PATH}:/var/log/apache2
+      - ${APACHE_SITES_PATH}:/etc/apache2/sites-available
+    ports:
+      - "${APACHE_HOST_HTTP_PORT}:80"
+      - "${APACHE_HOST_HTTPS_PORT}:443"
     depends_on:
       - php-fpm
-    ports:
-      - "${COUCHDB_PORT}:5984"
     networks:
       - frontend
 
@@ -71,6 +77,8 @@ services:
   mysql:
     build:
       context: ./mysql
+      args:
+          - MYSQL_VERSION=${MYSQL_VERSION}
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
@@ -127,6 +135,24 @@ services:
     networks:
       - frontend
 
+### couchdb Container #######################################
+
+  couchdb:
+    build:
+      context: ./couchdb
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    volumes:
+      - ${DATA_SAVE_PATH}/couchdb:/opt/couchdb/data
+      - ./logs/couchdb:/usr/local/var/log/couchdb
+    depends_on:
+      - php-fpm
+    ports:
+      - "${COUCHDB_PORT}:5984"
+    networks:
+      - frontend
+
 ### Redis Container #########################################
 
   redis:
@@ -151,13 +177,26 @@ services:
     networks:
       - frontend
 
-### Networks Setup ########################################
+### RabbitMQ #############################################
+
+  rabbitmq:
+    build: ./rabbitmq
+    ports:
+      - "${RABBITMQ_NODE_HOST_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_HTTP_HOST_PORT}:15672"
+      - "${RABBITMQ_MANAGEMENT_HTTPS_HOST_PORT}:15671"
+    privileged: true
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    depends_on:
+      - php-fpm
+    networks:
+      - frontend
 
 networks:
   frontend:
     driver: "bridge"
-
-### Volumes Setup  ########################################
 
 volumes:
   mysql:
