@@ -5,7 +5,7 @@ MAINTAINER Leo Qin
 
 # update timezone
 ARG TIMEZONE=Asia/Shanghai
-RUN /bin/cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
     && echo "${TIMEZONE}" > /etc/timezone;
 
 RUN chown -R mysql:root /var/lib/mysql/
