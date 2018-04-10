@@ -101,7 +101,7 @@ services:
       context: ./mysql
       args:
           - MYSQL_VERSION=${MYSQL_VERSION}
-          - TIMEZONE=${TIMEZONE}
+          - TZ=${TZ}
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
@@ -122,7 +122,7 @@ services:
       context: ./mariadb
       args:
         - MARIADB_VERSION=${MARIADB_VERSION}
-        - TIMEZONE=${TIMEZONE}
+        - TZ=${TZ}
     environment:
       - MYSQL_DATABASE=${MARIADB_DATABASE}
       - MYSQL_USER=${MARIADB_USER}
