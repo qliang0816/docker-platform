@@ -126,12 +126,12 @@ services:
 
 ### MongoDB Container #######################################
 
-  mongo:
+  mongodb:
     build: ./mongo
     ports:
       - "${MONGODB_PORT}:27017"
     volumes:
-      - ${DATA_SAVE_PATH}/mongo:/data/db
+      - ${DATA_SAVE_PATH}/mongodb:/data/db
     networks:
       - frontend
 
@@ -146,8 +146,6 @@ services:
     volumes:
       - ${DATA_SAVE_PATH}/couchdb:/opt/couchdb/data
       - ./logs/couchdb:/usr/local/var/log/couchdb
-    depends_on:
-      - php-fpm
     ports:
       - "${COUCHDB_PORT}:5984"
     networks:
@@ -172,8 +170,6 @@ services:
       - ${DATA_SAVE_PATH}/memcached:/var/lib/memcached
     ports:
       - "${MEMCACHED_HOST_PORT}:11211"
-    depends_on:
-      - php-fpm
     networks:
       - frontend
 
@@ -189,8 +185,6 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
-    depends_on:
-      - php-fpm
     networks:
       - frontend
 

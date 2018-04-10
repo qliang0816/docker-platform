@@ -1,6 +1,6 @@
 FROM rabbitmq
 
-MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
+MAINTAINER Leo Qin
 
 RUN rabbitmq-plugins enable --offline rabbitmq_management
 

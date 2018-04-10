@@ -1,6 +1,6 @@
 FROM webdevops/apache:ubuntu-16.04
 
-MAINTAINER Eric Pfeiffer <computerfr33k@users.noreply.github.com>
+MAINTAINER Leo Qin
 
 ARG PHP_UPSTREAM_CONTAINER=php-fpm
 ARG PHP_UPSTREAM_PORT=9000
