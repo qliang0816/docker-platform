@@ -32,7 +32,7 @@ services:
     environment:
       - NODE_ENV=${NODE_ENVIRONMENT}
     volumes:
-      - ${APPLICATION}${node}:/var/www
+      - ${APPLICATION}${NODE_VOLUMN}:/var/www
     ports:
       - "${NODE_PORT}:8888"
     command: "${NODE_COMMAND}"
