@@ -4,5 +4,13 @@
 
 - php7.1~php7.2
 - nginx
+- apache2
 - node
 - couchdb
+- mongodb
+- mysql
+- mariadb
+- redis
+- memcache
+- rabbitmq
+- elasticsearch
