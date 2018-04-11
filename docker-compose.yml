@@ -44,7 +44,8 @@ services:
   php-fpm:
     build:
       context: ./php-fpm
-      dockerfile: Dockerfile${PHP_VERSION}
+      arg:
+        - PHP_VERSION=${PHP_VERSION}
     volumes:
       - ${APPLICATION}:/var/www
       - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
