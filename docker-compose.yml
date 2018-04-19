@@ -44,7 +44,7 @@ services:
   php-fpm:
     build:
       context: ./php-fpm
-      arg:
+      args:
         - PHP_VERSION=${PHP_VERSION}
     volumes:
       - ${APPLICATION}:/var/www
