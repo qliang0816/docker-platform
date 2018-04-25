@@ -35,7 +35,20 @@ services:
       - ${APPLICATION}${NODE_VOLUMN}:/var/www
     ports:
       - "${NODE_PORT}:8888"
-    command: "${NODE_COMMAND}"
+    command: "npm start"
+    networks: 
+      - frontend
+
+### GOLANG Container ######################################
+
+  golang:
+    build:
+      context: ./golang
+      args:
+        - GOLANG_VOLUMN=${GOLANG_VOLUMN}
+    volumes:
+      - ${APPLICATION}${GOLANG_VOLUMN}:/var/www
+    command: "go get -d -v ./... && go install -v ./..."
     networks: 
       - frontend
 
