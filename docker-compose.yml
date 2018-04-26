@@ -221,7 +221,7 @@ services:
   elasticsearch:
     build: ./elasticsearch
     volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
+      - ${DATA_SAVE_PATH}/elasticsearch:/usr/share/elasticsearch/data
     environment:
       - cluster.name=cluster
       - bootstrap.memory_lock=true
