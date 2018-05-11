@@ -54,6 +54,18 @@ services:
     networks:
       - frontend
 
+### tomcat Server ########################################
+
+  tomcat:
+    build:
+      context: ./tomcat
+    volumes:
+      - ${APPLICATION}:/var/www
+    ports:
+      - "${TOMCAT_PORT}:8080"
+    networks:
+      - frontend
+
 ### NGINX Server Container ################################
 
   nginx:
