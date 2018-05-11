@@ -60,9 +60,11 @@ services:
     build:
       context: ./tomcat
     volumes:
-      - ${APPLICATION}:/var/www
+      - ${APPLICATION}:/usr/local/tomcat/www
+      - ${TOMCAT_HOST_LOG_PATH}:/usr/local/tomcat/logs
+      - ${TOMCAT_CONF_PATH}:/usr/local/tomcat/conf
     ports:
-      - "${TOMCAT_PORT}:8080"
+      - "${TOMCAT_HOST_PORT}:8080"
     networks:
       - frontend
 
