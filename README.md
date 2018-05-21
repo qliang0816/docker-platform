@@ -2,9 +2,7 @@
 
 #### 目前支持:
 
-- php7.1~php7.2
-- node
-- golang
+- php5.6~php7.2
 - nginx
 - apache2
 - couchdb
@@ -15,3 +13,4 @@
 - memcache
 - rabbitmq
 - elasticsearch
+- tomcat
