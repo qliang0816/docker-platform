@@ -24,21 +24,6 @@ volumes:
 
 services:
 
-### NODE Container ########################################
-
-  node:
-    build:
-      context: ./node
-    environment:
-      - NODE_ENV=${NODE_ENVIRONMENT}
-    volumes:
-      - ${APPLICATION}${NODE_VOLUMN}:/var/www
-    ports:
-      - "${NODE_PORT}:8888"
-    command: "${NODE_COMMAND}"
-    networks: 
-      - frontend
-
 ### PHP-FPM Container #####################################
 
   php-fpm:
