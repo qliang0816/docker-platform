@@ -24,37 +24,6 @@ volumes:
 
 services:
 
-<<<<<<< HEAD
-### NODE Container ########################################
-
-  node:
-    build:
-      context: ./node
-    environment:
-      - NODE_ENV=${NODE_ENVIRONMENT}
-    volumes:
-      - ${APPLICATION}${NODE_VOLUMN}:/var/www
-    ports:
-      - "${NODE_PORT}:8888"
-    command: "npm start"
-    networks: 
-      - frontend
-
-### GOLANG Container ######################################
-
-  golang:
-    build:
-      context: ./golang
-      args:
-        - GOLANG_VOLUMN=${GOLANG_VOLUMN}
-    volumes:
-      - ${APPLICATION}${GOLANG_VOLUMN}:/var/www
-    command: "go get -d -v ./... && go install -v ./..."
-    networks: 
-      - frontend
-
-=======
->>>>>>> master
 ### PHP-FPM Container #####################################
 
   php-fpm:
