@@ -111,6 +111,7 @@ services:
     volumes:
       - ${DATA_SAVE_PATH}/mysql:/var/lib/mysql
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      - ${DATA_SAVE_PATH}/mysql_dump:/var/local
     ports:
       - "${MYSQL_PORT}:3306"
     networks:
