@@ -1,2 +1,4 @@
 *.conf
 !default.conf.example
+*.crt
+*.key
