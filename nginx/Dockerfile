@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 ADD nginx.conf /etc/nginx/
 
