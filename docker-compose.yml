@@ -48,6 +48,7 @@ services:
       context: ./nexus3
     volumes:
       - ${DATA_SAVE_PATH}/nexus3:/nexus-data
+      - ${NEXUS3_HOST_LOG_PATH}:/nexus-data/log
     ports:
       - "${NEXUS3_HOST_PORT}:8081"
     networks:
