@@ -21,6 +21,8 @@ volumes:
     driver: "local"
   elasticsearch:
     driver: "local"
+  nexus3:
+    driver: "local"
 
 services:
 
@@ -36,6 +38,18 @@ services:
       - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
     expose:
       - "9000"
+    networks:
+      - frontend
+
+### tomcat Server ########################################
+
+  nexus3:
+    build:
+      context: ./nexus3
+    volumes:
+      - ${DATA_SAVE_PATH}/nexus3:/nexus-data
+    ports:
+      - "${NEXUS3_HOST_PORT}:8081"
     networks:
       - frontend
 
