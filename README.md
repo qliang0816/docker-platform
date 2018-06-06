@@ -20,3 +20,4 @@
 - rabbitmq
 - elasticsearch
 - tomcat
+- nexus3
