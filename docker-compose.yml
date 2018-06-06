@@ -23,6 +23,7 @@ volumes:
     driver: "local"
   nexus3:
     driver: "local"
+  nexus-data: {}
 
 services:
 
