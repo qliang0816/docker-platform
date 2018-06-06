@@ -1,3 +1,6 @@
 FROM sonatype/nexus3
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
+
+ARG NEXUS3_USER=root
+USER NEXUS3_USER
