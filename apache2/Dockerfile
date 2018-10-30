@@ -1,6 +1,6 @@
 FROM webdevops/apache:ubuntu-16.04
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 ARG PHP_UPSTREAM_CONTAINER=php-fpm
 ARG PHP_UPSTREAM_PORT=9000

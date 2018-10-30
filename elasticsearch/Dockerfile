@@ -1,5 +1,5 @@
 FROM elasticsearch:latest
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 EXPOSE 9200 9300

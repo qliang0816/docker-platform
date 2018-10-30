@@ -1,6 +1,6 @@
 FROM rabbitmq
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 RUN rabbitmq-plugins enable --offline rabbitmq_management
 

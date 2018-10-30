@@ -1,6 +1,6 @@
 FROM mongo:latest
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 #COPY mongo.conf /usr/local/etc/mongo/mongo.conf
 

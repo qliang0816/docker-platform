@@ -1,6 +1,6 @@
 FROM memcached:latest
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 CMD ["memcached"]
 

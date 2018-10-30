@@ -1,7 +1,7 @@
 ARG PHP_VERSION=72
 FROM leoqin/php${PHP_VERSION}-fpm-base
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 WORKDIR /var/www
 
