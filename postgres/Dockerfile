@@ -1,7 +1,7 @@
 ARG POSTGRESQL_VERSION=latest
 FROM postgres:${POSTGRESQL_VERSION}
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 # update timezone
 ARG TZ=UTC

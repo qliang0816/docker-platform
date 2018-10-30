@@ -1,7 +1,7 @@
 ARG MYSQL_VERSION=latest
 FROM mysql:${MYSQL_VERSION}
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 # update timezone
 ARG TZ=UTC

@@ -1,6 +1,6 @@
 FROM apache/couchdb:latest
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 # Add configuration
 COPY local.ini /opt/couchdb/etc/

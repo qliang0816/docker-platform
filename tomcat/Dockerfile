@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 # default expose
 EXPOSE 8080

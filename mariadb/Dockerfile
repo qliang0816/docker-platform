@@ -1,7 +1,7 @@
 ARG MARIADB_VERSION=latest
 FROM mariadb:${MARIADB_VERSION}
 
-MAINTAINER Leo Qin
+LABEL maintainer="Leo Qin"
 
 # update timezone
 ARG TZ=UTC
