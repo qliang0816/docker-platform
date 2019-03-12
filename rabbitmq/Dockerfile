@@ -2,6 +2,6 @@ FROM rabbitmq
 
 LABEL maintainer="Leo Qin"
 
-RUN rabbitmq-plugins enable --offline rabbitmq_management
+COPY enabled_plugins /etc/rabbitmq
 
 EXPOSE 15671 15672
