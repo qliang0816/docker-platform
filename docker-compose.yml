@@ -89,7 +89,7 @@ services:
 
   ### NGINX Server Container Depends PHP ####################
 
-  nginx:
+  nginx_depends_php:
     build:
       context: ./nginx_depends_php
       args:
@@ -124,7 +124,7 @@ services:
 
   ### Apache Server Depends PHP ############################
 
-  apache2:
+  apache2_depends_php:
     build:
       context: ./apache2_depends_php
       args:
