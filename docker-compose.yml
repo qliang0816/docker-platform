@@ -199,9 +199,10 @@ services:
   ### PostgreSQL Container ####################################
 
   postgres:
-    build: ./postgres
-    args: 
-      - TZ=${TZ}
+    build: 
+      context: ./postgres
+      args: 
+        - TZ=${TZ}
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
@@ -216,9 +217,10 @@ services:
   ### MongoDB Container #######################################
 
   mongodb:
-    build: ./mongodb
-    args: 
-      - TZ=${TZ}
+    build: 
+      context: ./mongodb
+      args: 
+        - TZ=${TZ}
     ports:
       - "${MONGODB_PORT}:27017"
     volumes:
@@ -247,9 +249,10 @@ services:
   ### Redis Container #########################################
 
   redis:
-    build: ./redis
-    args: 
-      - TZ=${TZ}
+    build: 
+      context: ./redis
+      args: 
+        - TZ=${TZ}
     volumes:
       - ${DATA_SAVE_PATH}/redis:/data
     ports:
@@ -260,9 +263,10 @@ services:
   ### Memcached Container #####################################
 
   memcached:
-    build: ./memcached
-    args: 
-      - TZ=${TZ}
+    build: 
+      context: ./memcached
+      args: 
+        - TZ=${TZ}
     volumes:
       - ${DATA_SAVE_PATH}/memcached:/var/lib/memcached
     ports:
@@ -273,9 +277,10 @@ services:
   ### RabbitMQ #############################################
 
   rabbitmq:
-    build: ./rabbitmq
-    args: 
-      - TZ=${TZ}
+    build: 
+      context: ./rabbitmq
+      args: 
+        - TZ=${TZ}
     ports:
       - "${RABBITMQ_NODE_HOST_PORT}:5672"
       - "${RABBITMQ_MANAGEMENT_HTTP_HOST_PORT}:15672"
@@ -290,9 +295,10 @@ services:
   ### ElasticSearch ########################################
 
   elasticsearch:
-    build: ./elasticsearch
-    args: 
-      - TZ=${TZ}
+    build: 
+      context: ./elasticsearch
+      args: 
+        - TZ=${TZ}
     volumes:
       - ${DATA_SAVE_PATH}/elasticsearch:/usr/share/elasticsearch/data
     environment:
