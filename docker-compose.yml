@@ -44,7 +44,7 @@ services:
     networks:
       - frontend
 
-  ### tomcat Server ########################################
+  ### nexus3 ###############################################
 
   nexus3:
     build:
@@ -58,6 +58,21 @@ services:
       - ${NEXUS3_HOST_LOG_PATH}:/nexus-data/log
     ports:
       - "${NEXUS3_HOST_PORT}:8081"
+    networks:
+      - frontend
+ 
+  ### jenkins #############################################
+
+  jenkins:
+    build:
+      context: ./jenkins
+      args: 
+        - TZ=${TZ}
+    volumes:
+      - ${DATA_SAVE_PATH}/jenkins:/var/jenkins_home
+    ports:
+      - "${JENKINS_HTTP_PORT}:8080"
+      - "${JENKINS_AGENT_PORT}:50000"
     networks:
       - frontend
 
