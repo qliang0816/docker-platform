@@ -66,8 +66,6 @@ services:
   jenkins:
     build:
       context: ./jenkins
-      args: 
-        - TZ=${TZ}
     volumes:
       - ${DATA_SAVE_PATH}/jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
