@@ -49,8 +49,6 @@ services:
   nexus3:
     build:
       context: ./nexus3
-      args: 
-        - TZ=${TZ}
     environment:
       - INSTALL4J_ADD_VM_PARAMS=${NEXUS3_ARFUMENTS}
     volumes:
