@@ -327,3 +327,18 @@ services:
       - "${ELASTICSEARCH_HOST_TRANSPORT_PORT}:9300"
     networks:
       - frontend
+
+  ### Zookeeper ###########################################
+
+  zookeeper:
+    build: 
+      context: ./zookeeper
+    restart: always
+    volumes:
+      - ${DATA_SAVE_PATH}/zookeeper/data:/data
+      - ${DATA_SAVE_PATH}/zookeeper/datakig:/datalog
+      - ${ZOOKEEPER_HOST_LOG_PATH}:/logs
+    ports:
+      - "${ZOOKEEPER_HOST_PORT}:2181"
+    networks:
+      - frontend
