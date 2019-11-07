@@ -43,6 +43,7 @@ services:
       - "9000"
     networks:
       - frontend
+      - backend
 
   ### nexus3 ###############################################
 
@@ -58,6 +59,7 @@ services:
       - "${NEXUS3_HOST_PORT}:8081"
     networks:
       - frontend
+      - backend
  
   ### jenkins #############################################
 
@@ -73,6 +75,7 @@ services:
     privileged: true
     networks:
       - frontend
+      - backend
 
   ### tomcat Server ########################################
 
@@ -89,6 +92,7 @@ services:
       - "${TOMCAT_HOST_PORT}:8080"
     networks:
       - frontend
+      - backend
 
   ### NGINX Server Container ################################
 
@@ -106,6 +110,7 @@ services:
       - "${NGINX_HOST_HTTPS_PORT}:443"
     networks:
       - frontend
+      - backend
 
   ### NGINX Server Container Depends PHP ####################
 
@@ -127,6 +132,7 @@ services:
       - php-fpm
     networks:
       - frontend
+      - backend
 
   ### Apache Server ########################################
 
@@ -144,6 +150,7 @@ services:
       - "${APACHE_HOST_HTTPS_PORT}:443"
     networks:
       - frontend
+      - backend
 
   ### Apache Server Depends PHP ############################
 
@@ -166,6 +173,7 @@ services:
       - php-fpm
     networks:
       - frontend
+      - backend
 
   ### MySQL Container #########################################
 
@@ -187,6 +195,7 @@ services:
       - "${MYSQL_PORT}:3306"
     networks:
       - frontend
+      - backend
 
   ### MariaDB Container #######################################
 
@@ -208,6 +217,7 @@ services:
       - "${MARIADB_PORT}:3306"
     networks:
       - frontend
+      - backend
 
   ### PostgreSQL Container ####################################
 
@@ -226,6 +236,7 @@ services:
       - "${POSTGRES_PORT}:5432"
     networks:
       - frontend
+      - backend
 
   ### MongoDB Container #######################################
 
@@ -240,6 +251,7 @@ services:
       - ${DATA_SAVE_PATH}/mongodb:/data/db
     networks:
       - frontend
+      - backend
 
   ### couchdb Container #######################################
 
@@ -258,6 +270,7 @@ services:
       - "${COUCHDB_PORT}:5984"
     networks:
       - frontend
+      - backend
 
   ### Redis Container #########################################
 
@@ -272,6 +285,7 @@ services:
       - "${REDIS_PORT}:6379"
     networks:
       - frontend
+      - backend
 
   ### Memcached Container #####################################
 
@@ -286,6 +300,7 @@ services:
       - "${MEMCACHED_HOST_PORT}:11211"
     networks:
       - frontend
+      - backend
 
   ### RabbitMQ #############################################
 
@@ -304,6 +319,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
     networks:
       - frontend
+      - backend
 
   ### ElasticSearch ########################################
 
@@ -327,6 +343,7 @@ services:
       - "${ELASTICSEARCH_HOST_TRANSPORT_PORT}:9300"
     networks:
       - frontend
+      - backend
 
   ### Zookeeper ###########################################
 
@@ -342,3 +359,4 @@ services:
       - "${ZOOKEEPER_HOST_PORT}:2181"
     networks:
       - frontend
+      - backend
