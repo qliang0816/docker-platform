@@ -350,7 +350,7 @@ services:
   zookeeper:
     build: 
       context: ./zookeeper
-    restart: always
+    # restart: always
     volumes:
       - ${DATA_SAVE_PATH}/zookeeper/data:/data
       - ${DATA_SAVE_PATH}/zookeeper/datakig:/datalog
