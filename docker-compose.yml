@@ -36,7 +36,7 @@ services:
     environment:
       - INSTALL4J_ADD_VM_PARAMS=${NEXUS3_ARFUMENTS}
     volumes:
-      - ${DATA_SAVE_PATH}/nexus3:/nexus-data
+      - ${DATA_PATH_HOST}/nexus3:/nexus-data
       - ${NEXUS3_HOST_LOG_PATH}:/nexus-data/log
     ports:
       - "${NEXUS3_HOST_PORT}:8081"
@@ -123,7 +123,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
-      - ${DATA_SAVE_PATH}/mysql:/var/lib/mysql
+      - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL_PORT}:3306"
@@ -143,7 +143,7 @@ services:
       - MYSQL_PASSWORD=${MARIADB_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
-      - ${DATA_SAVE_PATH}/mariadb:/var/lib/mysql
+      - ${DATA_PATH_HOST}/mariadb:/var/lib/mysql
       - ${MARIADB_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MARIADB_PORT}:3306"
@@ -161,7 +161,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - ${DATA_SAVE_PATH}/postgres:/var/lib/postgresql/data
+      - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_PORT}:5432"
     networks:
@@ -176,7 +176,7 @@ services:
     ports:
       - "${MONGODB_PORT}:27017"
     volumes:
-      - ${DATA_SAVE_PATH}/mongodb:/data/db
+      - ${DATA_PATH_HOST}/mongodb:/data/db
       - ${DATA_PATH_HOST}/mongo_config:/data/configdb
     networks:
       - backend
@@ -191,7 +191,7 @@ services:
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
     volumes:
-      - ${DATA_SAVE_PATH}/couchdb:/opt/couchdb/data
+      - ${DATA_PATH_HOST}/couchdb:/opt/couchdb/data
       - ${COUCHDB_HOST_LOG_PATH}:/usr/local/var/log/couchdb
     ports:
       - "${COUCHDB_PORT}:5984"
@@ -205,7 +205,7 @@ services:
       args: 
         - TZ=${TZ}
     volumes:
-      - ${DATA_SAVE_PATH}/redis:/data
+      - ${DATA_PATH_HOST}/redis:/data
     ports:
       - "${REDIS_PORT}:6379"
     networks:
@@ -226,7 +226,7 @@ services:
       args: 
         - TZ=${TZ}
     volumes:
-      - ${DATA_SAVE_PATH}/memcached:/var/lib/memcached
+      - ${DATA_PATH_HOST}/memcached:/var/lib/memcached
     ports:
       - "${MEMCACHED_HOST_PORT}:11211"
     networks:
@@ -259,7 +259,7 @@ services:
       args: 
         - TZ=${TZ}
     volumes:
-      - ${DATA_SAVE_PATH}/elasticsearch:/usr/share/elasticsearch/data
+      - ${DATA_PATH_HOST}/elasticsearch:/usr/share/elasticsearch/data
     environment:
       - cluster.name=cluster
       - node.name=node
@@ -283,8 +283,8 @@ services:
       context: ./zookeeper
     # restart: always
     volumes:
-      - ${DATA_SAVE_PATH}/zookeeper/data:/data
-      - ${DATA_SAVE_PATH}/zookeeper/datakig:/datalog
+      - ${DATA_PATH_HOST}/zookeeper/data:/data
+      - ${DATA_PATH_HOST}/zookeeper/datakig:/datalog
       - ${ZOOKEEPER_HOST_LOG_PATH}:/logs
     ports:
       - "${ZOOKEEPER_PORT}:2181"
