@@ -314,8 +314,6 @@ services:
       - KAFKA_LOG_RETENTION_HOURS=${KAFKA_LOG_RETENTION_HOURS}
       - KAFKA_BROKER_ID=1
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_NUM_PARTITIONS=3
-      - KAFKA_DEFAULT_REPLICATION_FACTOR=2
     volumes:
       # 将 kafka 的数据文件映射出来
       - ${DATA_PATH_HOST}/kafka1:/kafka
@@ -345,8 +343,6 @@ services:
       - KAFKA_LOG_RETENTION_HOURS=${KAFKA_LOG_RETENTION_HOURS}
       - KAFKA_BROKER_ID=2
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_NUM_PARTITIONS=3
-      - KAFKA_DEFAULT_REPLICATION_FACTOR=2
     volumes:
       # 将 kafka 的数据文件映射出来
       - ${DATA_PATH_HOST}/kafka2:/kafka
