@@ -304,10 +304,10 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:${ZOOKEEPER_PORT}
       # 非必须，设置自动创建 topic
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=${KAFKA_AUTO_CREATE_TOPICS_ENABLE}
-      # - KAFKA_ADVERTISED_HOST_NAME=${IP}
-      # - KAFKA_ADVERTISED_PORT=9092
-      # - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
-      - KAFKA_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_ADVERTISED_HOST_NAME=${HOST_IP}
+      - KAFKA_ADVERTISED_PORT=${KAFKA_PORT1}
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:${KAFKA_PORT1}
+      - KAFKA_LISTENERS=PLAINTEXT=//:${KAFKA_PORT1}
       # 非必须，设置对内存
       - KAFKA_HEAP_OPTS=${KAFKA_HEAP_OPTS}
       # 非必须，设置保存7天数据，为默认值
@@ -333,10 +333,10 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:${ZOOKEEPER_PORT}
       # 非必须，设置自动创建 topic
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=${KAFKA_AUTO_CREATE_TOPICS_ENABLE}
-      # - KAFKA_ADVERTISED_HOST_NAME=${IP}
-      # - KAFKA_ADVERTISED_PORT=9092
-      # - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
-      - KAFKA_LISTENERS=PLAINTEXT=//:9092
+      - KAFKA_ADVERTISED_HOST_NAME=${HOST_IP}
+      - KAFKA_ADVERTISED_PORT=${KAFKA_PORT2}
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:${KAFKA_PORT2}
+      - KAFKA_LISTENERS=PLAINTEXT=//:${KAFKA_PORT2}
       # 非必须，设置对内存
       - KAFKA_HEAP_OPTS=${KAFKA_HEAP_OPTS}
       # 非必须，设置保存7天数据，为默认值
@@ -351,3 +351,11 @@ services:
       - zookeeper
     networks:
       - backend
+
+### Kafka-manager   #####################################
+  kafka-manager:
+    image: sheepkiller/kafka-manager
+    environment:
+      - ZK_HOSTS=${HOST_IP}
+    ports:
+      - "${KAFKA_MAMAGER_PORT}:9000"
