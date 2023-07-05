@@ -323,3 +323,18 @@ services:
       - ZK_HOSTS=${HOST_IP}
     ports:
       - "${KAFKA_MAMAGER_PORT}:9000"
+
+### nacos   #####################################
+  nacos-standalone:
+    build: 
+      context: ./rabbitmq
+      args: 
+        - NACOS_STANDALONE_VERSION=${NACOS_STANDALONE_VERSION}
+    container_name: nacos-standalone
+    environment:
+      - MODE=standalone
+    volumes:
+      - ${NACOS_STANDALONE_HOST_LOG_PATH}:/home/nacos/logs
+    ports:
+      - "${NACOS_STANDALONE_CLIENT_PORT}:8848"
+      - "${NACOS_STANDALONE_SERVER_PORT}:9848"

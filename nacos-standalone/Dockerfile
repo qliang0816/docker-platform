@@ -1,5 +1,5 @@
-ARG NACOS_VERSION=latest
-FROM nacos/nacos-server:${NACOS_VERSION}
+ARG NACOS_STANDALONE_VERSION=latest
+FROM nacos/nacos-server:${NACOS_STANDALONE_VERSION}
 
 LABEL maintainer="Leo Qin"
 
