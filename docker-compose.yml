@@ -327,7 +327,7 @@ services:
 ### nacos   #####################################
   nacos-standalone:
     build: 
-      context: ./rabbitmq
+      context: ./nacos-standalone
       args: 
         - NACOS_STANDALONE_VERSION=${NACOS_STANDALONE_VERSION}
     container_name: nacos-standalone
