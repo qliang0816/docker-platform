@@ -333,6 +333,8 @@ services:
     container_name: nacos-standalone
     environment:
       - MODE=standalone
+      - JVM_XMS=512M
+      - JVM_XMX=512M
     volumes:
       - ${NACOS_STANDALONE_HOST_LOG_PATH}:/home/nacos/logs
     ports:
