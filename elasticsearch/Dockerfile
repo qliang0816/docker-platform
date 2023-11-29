@@ -1,4 +1,4 @@
-FROM elasticsearch:7.6.2
+FROM elasticsearch:7.17.15
 
 LABEL maintainer="Leo Qin"
 

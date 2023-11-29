@@ -227,6 +227,7 @@ services:
         - TZ=${TZ}
     volumes:
       - ${DATA_PATH_HOST}/elasticsearch:/usr/share/elasticsearch/data
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - cluster.name=cluster
       - node.name=node
