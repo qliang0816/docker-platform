@@ -244,6 +244,16 @@ services:
     networks:
       - backend
 
+### Kibana ########################################
+  kibana:
+    image: kibana:7.17.10
+    restart: always
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      I18N_LOCALE: zh-CN
+    ports:
+      - 5601:5601
+
 ### Zookeeper ###########################################
   zookeeper:
     build: 
