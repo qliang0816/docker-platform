@@ -248,8 +248,8 @@ services:
   kibana:
     build: 
       context: ./kibana
-      args: 
-        - TZ=${TZ}
+      # args: 
+        # - TZ=${TZ}
     # restart: always
     environment:
       ELASTICSEARCH_HOSTS: http://${HOST_IP}:${ELASTICSEARCH_HOST_HTTP_PORT}
